@@ -56,18 +56,18 @@ Linux system or Cloud VM (EC2)
 Launch a Linux/(Ubuntu) EC2 instance and connect using SSH.
 
 ### Step 2: Install Docker  
----
+```
 sudo apt update  
 sudo apt install docker -y  
 sudo systemctl start docker  
 sudo systemctl enable docker
 
----
----
-Verify Docker installation:  
-docker --version 
+```
 
----
+Verify Docker installation:
+```  
+docker --version 
+```
 
 ### Step 3: Pull Required Docker Images  
 
@@ -75,17 +75,16 @@ docker pull mysql:5.7
 docker pull wordpress  
 
 ### Step 4: Create MySQL Container  
----
+```
 docker run -d  
 --name mydb  
 -e MYSQL_ROOT_PASSWORD=root  
 -e MYSQL_DATABASE=wordpressdb  
 mysql:5.7  
-
----
+```
 
 ### Step 5: Create WordPress Container  
----
+```
 docker run -d -p 80:80  
 --name wordpressapp  
 -e WORDPRESS_DB_HOST=mydb  
@@ -94,23 +93,23 @@ docker run -d -p 80:80
 -e WORDPRESS_DB_NAME=wordpressdb  
 --link mydb:mysql  
 wordpress  
+```
 
----
 
 ## Command Explanation
----
+```
 -p 80:80 exposes WordPress on the browser  
 WORDPRESS_DB_HOST specifies the MySQL container name  
 --link connects the WordPress container to the MySQL container  
-
----
+```
 
 ## Access WordPress in Browser
----
-Open your browser and visit  
-http://<SERVER-IP>:80  
 
----
+Open your browser and visit  
+```
+http://<SERVER-IP>:80  
+```
+
 
 ## Project Screenshots
 
@@ -126,20 +125,19 @@ http://<SERVER-IP>:80
 ---
 
 ## Verify Running Containers
-
+```
 docker ps  
-
+```
 ---
 
 ## Execute Commands Inside Container
-
+```
 docker exec -it <container_id> /bin/bash  
 
 Access MySQL  
 
 mysql -u root -p  
-
----
+```
 
 ## Environment Variables Explanation
 
